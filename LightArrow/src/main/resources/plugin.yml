@@ -1,0 +1,8 @@
+name: LightArrows
+version: ${project.version}
+main: ru.riku.lightarrow.LightArrow
+authors: [ Riku ]
+description: The best plugin for arrows
+commands:
+  lightarrows:
+    aliases: [la, larrows]
