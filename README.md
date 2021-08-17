@@ -12,9 +12,13 @@
 - BLACHOLE-N ((BETA) Притягивает игроков в радиусе N блоков в точку которую попала стрела.)
 
 Команды: (/lightarrows, /la, /larrows) (Доступ только у OP)
+
  | Просмотреть список доступных стрел: /lightarrows list
+ 
  | Выдать себе стрелу: /lightarrows get <Название> <Кол-во>
+ 
  | Выдать игроку стрелу: /lightarrows give <Ник> <Название> <Кол-во>
+ 
  | Перезагрузить конфиг: /lightarrows reload
 
 http://rubukkit.org/threads/fun-lightarrows-v1-6-0-unikalnye-strely-s-sobytijami-1-12-2.178305/
