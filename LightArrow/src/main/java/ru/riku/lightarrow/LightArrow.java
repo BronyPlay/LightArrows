@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.riku.lightarrow.cmd.LightCustomArrows;
+import ru.riku.lightarrow.handlers.CustomHandler;
 import ru.riku.lightarrow.handlers.Handler;
 import ru.riku.lightarrow.utills.lang.LangConfiguration;
 import ru.riku.lightarrow.utills.custom.Item;
@@ -45,6 +46,7 @@ public final class LightArrow extends JavaPlugin {
         saveDefaultConfig();
         loadLangManager();
         getListeners().add(new Handler());
+        getListeners().add(new CustomHandler());
         getInstance() .getCommand("lightarrows").setExecutor(new LightCustomArrows());
         for (String item : getInstance().getConfig().getConfigurationSection("LightArrows").getKeys(false)) {
             String patern = "LightArrows." + item + ".";
