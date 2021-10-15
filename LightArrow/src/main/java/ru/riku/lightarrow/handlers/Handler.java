@@ -1,6 +1,7 @@
 package ru.riku.lightarrow.handlers;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -46,6 +47,15 @@ public class Handler implements Listener {
                 }
                 break;
             }
+            case "TELEPORT": {
+                if (p != null) {
+                    Player shooter = (Player) event.getEntity().getShooter();
+                    Location loc = p.getLocation();
+                    loc.setYaw(shooter.getLocation().getYaw());
+                    loc.setPitch(shooter.getLocation().getPitch());
+                    Bukkit.getPluginManager().callEvent(new LightTeleportHitEvent(shooter, loc));
+                }
+            }
         }
     }
 
@@ -60,16 +70,21 @@ public class Handler implements Listener {
                 }
             }
         }
-
         if (event.getHitBlock() != null) {
             if (event.getEntity().hasMetadata("CUSTOMARROW")) {
                 List<MetadataValue> value = event.getEntity().getMetadata("CUSTOMARROW");
                 if (value.get(0).asString().contains("BLACKHOLE-")) {
                     String[] val = value.get(0).asString().split("-");
                     Bukkit.getPluginManager().callEvent(new LightBlackHoleHitEvent(event.getHitBlock(), Integer.parseInt(val[1])));
+                } else if(value.get(0).asString().contains("TELEPORT")) {
+                    Player shooter = (Player) event.getEntity().getShooter();
+                    Location loc = event.getHitBlock().getLocation();
+                    loc.setYaw(shooter.getLocation().getYaw());
+                    loc.setPitch(shooter.getLocation().getPitch());
+                    Bukkit.getPluginManager().callEvent(new LightTeleportHitEvent(shooter, loc));
                 }
+                event.getEntity().remove();
             }
-            event.getEntity().remove();
         }
     }
 
