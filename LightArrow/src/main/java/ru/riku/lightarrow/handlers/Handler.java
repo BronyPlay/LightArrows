@@ -34,6 +34,7 @@ public class Handler implements Listener {
                 if (p != null) {
                     Bukkit.getPluginManager().callEvent(new LightClearArrowHitEvent(p));
                 }
+                break;
             }
             case "CHANGE": {
                 if (p != null) {
@@ -53,8 +54,10 @@ public class Handler implements Listener {
                     Location loc = p.getLocation();
                     loc.setYaw(shooter.getLocation().getYaw());
                     loc.setPitch(shooter.getLocation().getPitch());
+                    loc.add(0,1,0);
                     Bukkit.getPluginManager().callEvent(new LightTeleportHitEvent(shooter, loc));
                 }
+                break;
             }
         }
     }
@@ -81,6 +84,7 @@ public class Handler implements Listener {
                     Location loc = event.getHitBlock().getLocation();
                     loc.setYaw(shooter.getLocation().getYaw());
                     loc.setPitch(shooter.getLocation().getPitch());
+                    loc.add(0,1,0);
                     Bukkit.getPluginManager().callEvent(new LightTeleportHitEvent(shooter, loc));
                 }
                 event.getEntity().remove();
