@@ -3,10 +3,7 @@ package ru.riku.lightarrow.handlers;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
@@ -76,6 +73,12 @@ public class CustomHandler implements Listener {
         Location location = e.getPlayer().getLocation();
         location.createExplosion(0.10F, false, false);
     }
+
+    @EventHandler
+    public void onTeleportHit(LightTeleportHitEvent e) {
+        e.getPlayer().teleport(e.getLocation());
+    }
+
 
    @EventHandler
     public void onAimArrowShoot(LightAimArrowShootEvent e) {
